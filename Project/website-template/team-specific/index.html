@@ -149,7 +149,7 @@ Beyond user-centric applications, music genre classification has significant imp
 		</p>
     <div align = "center">
      <audio controls align="center">
-      <source src="resources/audio/025378.mp3" type="audio/mpeg" align="center">
+      <source src="resources/audio/jazz.00008.wav" type="audio/mpeg" align="center">
       Your browser does not support the audio element.
      </audio>
    </div>
@@ -170,8 +170,7 @@ Beyond user-centric applications, music genre classification has significant imp
         <br/>
         <br/>
 
-
-        Output: Electronic
+        Output: Jazz
       </p>
       <p>
       </p>
@@ -180,7 +179,7 @@ Beyond user-centric applications, music genre classification has significant imp
 
 
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-12 text-left">
         <h2 class="mt-5">State of the art</h2>
 
@@ -189,12 +188,12 @@ Beyond user-centric applications, music genre classification has significant imp
 		</p>
 
 		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/state-of-the-art-results.png" class="img-fluid text-center">
+	    <!-- <div class="img-container" align="center"> <!-- Block parent element -->
+      		<!-- <img src="resources/images/state-of-the-art-results.png" class="img-fluid text-center">
     	</div>
     	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
+      <!-- </div>
+    </div> --> 
 
     <div class="row">
       <div class="col-lg-12 text-left">
@@ -248,71 +247,105 @@ Beyond user-centric applications, music genre classification has significant imp
        The BBNN architecture consists of multiple layers, including convolutional layers, pooling layers, and fully connected layers. The network initially processes the input audio clips using convolutional layers, which extract local temporal features from short segments of the audio. The pooling layers aggregate the extracted features, capturing more global information about the audio signals. Finally, the fully connected layers perform classification based on the learned representations.
        <br>
        <br>
-       In the literature, the BBNN model has shown promising results in music genre classification tasks. It has been able to achieve high accuracy, with reported results of up to 93.9%. However, it is important to note that these results were obtained using audio clips with a length of 30 seconds. Below are the reults achieved by the BBNN model on the GTZAN dataset in the literature.
+       In the literature, the BBNN model has shown promising results in music genre classification tasks. It has been able to achieve high accuracy, with reported results of up to 93.9%. However, it is important to note that these results were obtained using audio clips with a length of 30 seconds. Below are the reults achieved by the BBNN model on the GTZAN dataset in the literature which is considered state of the art.
        <br>
        <br>
        <div class="img-container" align="center"> <!-- Block parent element -->
         <img src="resources/images/BBNN.png" class="img-fluid text-center">
     </div>
        <br>
-       <br>
-       To further improve the performance of the BBNN model and make it more suitable for real-world applications, we performed data augmentation techniques were applied. In this case, the length of the audio clips was shortened from 30 seconds to 10 seconds. After data augmentation, the BBNN model achieved even more impressive results, with training accuracy reaching up to 99% and validation accuracy up to 94%.
-       <br>
-       <br>
-       The use of data augmentation, specifically shortening the length of the clips, likely contributed to the higher accuracy achieved by the BBNN model. By reducing the length of the clips, the model can capture more concise and relevant information, which may enhance its ability to classify music genres accurately.
-       <br>
-       <br>
+       
 
       </p>
 
     <div class="row">
       <div class="col-lg-12 text-left">
         <h2 class="mt-5">Proposed Updates</h2>
-
+        <br/>
+        <br/>
+        <h4> <u>AST</u></h4>
+        <h5 class="mt-5">Update #1: Music Genre Classification </h5>
+        <br/> 
+        The AST has never been used with music genre classification before. We trained it on Free Music Archieve and the GTZAN datset to see if it improves; however none had enough data even with data augmentaion. 
+        <br/>
+        <h5 class="mt-5">Update #2: Fine Tuning AST </h5>
+        <br/>
+        We fined tuned AST using pretrained weights of Audio Set dataset.
+        <div class="row">
+          <div class="col-lg-12 text-left">
+            <h2 class="mt-5">Results</h2>
+    
+            <p>
+          Below is the confusion matrix of the AST without pretraining.
+        </p>
+    
+        <br/> <!-- Empty Line before the image -->
+          <div class="img-container" align="center"> <!-- Block parent element -->
+              <img src="resources/images/withoutpre.png" class="img-fluid text-center">
+          </div>
+          <br/> <!-- Empty Line after the image -->
+          </div>
+        </div>
         <p>
-			Add all the model updates you made here, need as many images as you wish
-		</p>
-
-		<h5 class="mt-5">Update #1: Used new bla bla</h5>
-		<p>
-			details here
-		</p>
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/update1.jpeg" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-
-		<h5 class="mt-5">Update #2: Used new whatever</h5>
-		<p>
-			details here
-		</p>
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/update2.png" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
+          Below is the confusion matrix of the AST with pretraining.
+        </p>
+        <br/> <!-- Empty Line before the image -->
+        <div class="img-container" align="center"> <!-- Block parent element -->
+            <img src="resources/images/withpre.png" class="img-fluid text-center">
+        </div>
+        <br/> <!-- Empty Line after the image -->
+        </div>
       </div>
-    </div>
+    
+        <br>
+        <br>
+        <h4> <u>BBNN</u></h4>
+        <h5 class="mt-5">Update #1: Did Data Augmentation </h5>
+        
+       To further improve the performance of the BBNN model and make it more suitable for real-world applications, we performed data augmentation techniques were applied. In this case, the length of the audio clips was shortened from 30 seconds to 10 seconds. After data augmentation, the BBNN model achieved even more impressive results, with training accuracy reaching up to 99% and validation accuracy up to 94% compared to the literatute that achieved 93.9%.
+       <br>
+       <br>
+       The use of data augmentation, specifically shortening the length of the clips, likely contributed to the higher accuracy achieved by the BBNN model. By reducing the length of the clips, the model can capture more concise and relevant information, which may enhance its ability to classify music genres accurately.
+       <div class="row">
+        <div class="col-lg-12 text-left">
+          <h2 class="mt-5">Results</h2>
+  
+          <p>
+        Below is the confusion matrix of the BBNN with data augmentation.
+      </p>
+  
+      <br/> <!-- Empty Line before the image -->
+        <div class="img-container" align="center"> <!-- Block parent element -->
+            <img src="resources/images/BNNAUG.png" class="img-fluid text-center">
+        </div>
+        <br/> <!-- Empty Line after the image -->
+        </div>
+       <br/>
+       <br>
+       <h5 class="mt-5">Update #2: Applied a GRU block  </h5>
+      
+        Lastly, we decided to add a GRU block to the BBNN architecture after the first convolutional layer. The model was able to achieve a training accuracy 82% on the validation set. 
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-left">
+            <h2 class="mt-5">Results</h2>
+    
+            <p>
+          Below is the confusion matrix of the BBNN with data augmentation and a GRU block.
+        </p>
+    
+        <br/> <!-- Empty Line before the image -->
+          <div class="img-container" align="center"> <!-- Block parent element -->
+              <img src="resources/images/BBNNRNN.png" class="img-fluid text-center">
+          </div>
+          <br/> <!-- Empty Line after the image -->
+          </div>
+        </div>
+    
 
+  
 
-    <div class="row">
-      <div class="col-lg-12 text-left">
-        <h2 class="mt-5">Results</h2>
-
-        <p>
-			Add your results here, add graphs and images to illustrate it.
-			Compare your results to the original model and state of the art
-		</p>
-
-		<br/> <!-- Empty Line before the image -->
-	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/results.png" class="img-fluid text-center">
-    	</div>
-    	<br/> <!-- Empty Line after the image -->
-      </div>
-    </div>
-
+    
 
     <div class="row">
       <div class="col-lg-12 text-left">
@@ -323,12 +356,20 @@ Beyond user-centric applications, music genre classification has significant imp
 		</p>
 
 	 	<ul>
-		  <li>Programming framework</li>
-		  <li>Training hardware i.e. colab or azure or anything else</li>
-		  <li>Training time</li>
-		  <li>Number of epochs</li>
-		  <li>Time per epoch</li>
-		  <li>Any other important detail or difficulties</li>
+    <h5> Programming Framework</h5>
+    <li>Python</li>
+    <h5> Training Hardware</h5>
+    <li> Two RTX 2080 Supers </li>
+    <h5> Training Time</h5>
+    <li>BBNN with data augmention: 25 minites to train with early stopping at 90 epochs.</li>
+    <li>BBNN with GRU block: 50 minited to train with early stopping at 69 epochs.</li>
+    <h5> Number of Epochs</h5>
+    <li> 100 Epochs for all of the models</li>
+    <h5> Time per Epoch</h5>
+    <li> BBNN with data augmentaion: 15 seconds per epoch</li>
+    <li> BBNN with GRU block: 30 seconds per epoch</li>
+    <h5> Any other important detail or difficulties</h5>
+		  
 		</ul> 
       </div>
     </div>

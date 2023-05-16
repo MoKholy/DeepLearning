@@ -201,16 +201,69 @@ Beyond user-centric applications, music genre classification has significant imp
         <h2 class="mt-5">Orignial Model from Literature</h2>
 
         <p>
-			Details about the model here, add your model images below
+          <h4>AST Model</h4>
 		</p>
 
 		<br/> <!-- Empty Line before the image -->
 	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/model.png" class="img-fluid text-center">
+      		<img src="resources/images/unnamed.png" class="img-fluid text-center">
     	</div>
     	<br/> <!-- Empty Line after the image -->
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+
+        <p>
+          The Audio Spectrogram Transformer (AST) model is a deep learning architecture designed specifically for audio-related tasks, such as music genre classification. It combines the power of transformers and spectrogram representations to learn complex patterns and relationships within audio data.
+          <br>
+          <br>
+          The AST model processes audio signals by first converting them into spectrograms, which are visual representations of the frequencies and amplitudes present in a sound wave over time. The spectrograms are then treated as images and fed into a transformer architecture, which consists of multiple layers of self-attention mechanisms. The self-attention mechanisms enable the model to capture long-range dependencies and contextual information from the spectrogram, allowing it to learn discriminative features for genre classification.
+          <br>
+          <br>
+                    During training, the AST model showed promising results, achieving high accuracy and demonstrating its capability to learn intricate patterns from the available data. However, when it came to generalization, the AST model faced challenges. It did not perform as well on unseen data, indicating a lack of robustness.
+          <br>
+          <br>
+          The main reason for the limited generalization of the AST model was the requirement for a large amount of data to match or surpass the performance of convolutional neural network (CNN) architectures commonly used for audio tasks. Unfortunately, the available datasets did not contain enough information to fully leverage the potential of AST. Even with data augmentation techniques applied, the model's generalization performance remained unsatisfactory.
+          <br>
+          <br>
+          Another factor contributing to the generalization issue was the lack of computational power required to train larger AST models effectively. As the model size increases, so does the need for computational resources to handle the increased complexity. Without adequate computational power, it becomes challenging to train larger models that can capture a more comprehensive representation of audio features. 
+          <br>
+          <br>
+      </p>
+      </div>
+      <h4>Bottom-up Broadcast</h4>
+      <br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/bottom.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+      <p>
+       
+       The Bottom-up Broadcast Neural Network (BBNN) is a neural network architecture specifically designed for music genre classification tasks. Unlike traditional feed-forward neural networks, the BBNN takes a bottom-up approach, analyzing music signals at various temporal scales to capture both local and global patterns.
+       <br>
+       <br>
+       The BBNN architecture consists of multiple layers, including convolutional layers, pooling layers, and fully connected layers. The network initially processes the input audio clips using convolutional layers, which extract local temporal features from short segments of the audio. The pooling layers aggregate the extracted features, capturing more global information about the audio signals. Finally, the fully connected layers perform classification based on the learned representations.
+       <br>
+       <br>
+       In the literature, the BBNN model has shown promising results in music genre classification tasks. It has been able to achieve high accuracy, with reported results of up to 93.9%. However, it is important to note that these results were obtained using audio clips with a length of 30 seconds. Below are the reults achieved by the BBNN model on the GTZAN dataset in the literature.
+       <br>
+       <br>
+       <div class="img-container" align="center"> <!-- Block parent element -->
+        <img src="resources/images/BBNN.png" class="img-fluid text-center">
+    </div>
+       <br>
+       <br>
+       To further improve the performance of the BBNN model and make it more suitable for real-world applications, we performed data augmentation techniques were applied. In this case, the length of the audio clips was shortened from 30 seconds to 10 seconds. After data augmentation, the BBNN model achieved even more impressive results, with training accuracy reaching up to 99% and validation accuracy up to 94%.
+       <br>
+       <br>
+       The use of data augmentation, specifically shortening the length of the clips, likely contributed to the higher accuracy achieved by the BBNN model. By reducing the length of the clips, the model can capture more concise and relevant information, which may enhance its ability to classify music genres accurately.
+       <br>
+       <br>
+
+      </p>
 
     <div class="row">
       <div class="col-lg-12 text-left">

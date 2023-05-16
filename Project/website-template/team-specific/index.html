@@ -59,7 +59,21 @@
       <div class="col-lg-12 text-left">
         <h2 class="mt-5">Problem Statement</h2>
 		<p>
-			Investigating the use of Audio Spectrogram Transformers for Music Genre Classification.
+			With the increasing popularity of social media platforms, music streaming apps, and the need for music analysis, the accurate classification of music genres has become crucial. Music genres provide valuable information about the style, mood, and characteristics of a particular song, allowing users to discover new music and curate personalized playlists. However, existing tagging and classification algorithms often fall short in accurately categorizing songs into their respective genres.
+      <br/> 
+      <br/>
+      The problem at hand is the need to improve the accuracy and efficiency of music genre classification algorithms, specifically tailored for social media platforms, music streaming apps, and music analysis. Current systems face several challenges in accurately tagging songs with appropriate genres, leading to inaccurate recommendations, playlist compositions, and music analysis results. 
+<br/> 
+<br/>
+Tagging plays a crucial role in music genre classification as it enables the organization, retrieval, and recommendation of music based on genre preferences. Accurate tagging allows users to easily search for songs, create personalized playlists, and receive relevant music recommendations. Moreover, accurate genre tagging facilitates music analysis for researchers and industry professionals, enabling them to gain insights into consumer preferences, market trends, and popular music styles.
+<br/> 
+<br/>
+Social media platforms and music streaming apps have experienced exponential growth in recent years, resulting in a vast amount of user-generated content. Likewise, music streaming apps heavily rely on accurate genre classification to deliver tailored music recommendations, enhance user engagement, and provide an improved listening experience.
+<br/> 
+<br/>
+Beyond user-centric applications, music genre classification has significant implications for music analysis and research. Accurate classification of music genres allows researchers and professionals to study music consumption patterns, identify emerging genres, understand cross-genre influences, and develop new music recommendation algorithms. It contributes to a deeper understanding of the music landscape and aids in making informed decisions regarding music production, marketing, and promotion.
+<br/> 
+ <br/>
 		</p>
       </div>
     </div>
@@ -69,28 +83,40 @@
         <h2 class="mt-5">Dataset</h2>
 
         <p>
-          While GTZAN is a very popular Music Genre Classification dataset, we opted out of using it as Transformers are generally large models and require large amounts of data to train. Thus, we used the Free Music Archive dataset, which is a much larger dataset.
-          We used the Free Music Archive-Small version of the Dataset. This dataset consists of 8000 entries of 8 of the most popular genres from the Free Music Archive-Medium version of the dataset. There are 1000 30s clips per genre, thus the dataset is balanced, with a total size of 7.4 GBs. The genres are:
+          Initially, we used Free Music Archive dataset, the small version, which is a new one that contains 8 different genres and 1000 music pieces for each genre making in balanced dataset. However a problem that we faced is that the quality of the music in the dataset was different within the genre itself. Even models that gave very good results in GTZAN, which is benchmark in literature, gave very bad results on this dataset. Even after performing data augmentation, we still got very bad results. We thus decided to switch use GTZAN dataset instead.
+
+          <br/> 
+          <br/>
+          
+          The GTZAN dataset has 10 genres.
 
           <ul>
-              <li> Electronic </li>
-              <li> Experimental </li>
-              <li> Folk </li>
+              <li> Blues </li>
+              <li> Classic </li>
+              <li> Country </li>
               <li> Hip-Hop </li>
-              <li> Instrumental </li>
-              <li> International </li>
+              <li> Disco </li>
+              <li> Jazz </li>
               <li> Pop </li>
               <li> Rock </li>
+              <li> Metal </li>
+              <li> Reggae </li>
             </ul>
         </p>
         
         <h2 class="mt-5">Data PreProcessing</h2>
         <p>
-          The dataset is provided in the form of mp3 files. We first convert the mp3 files to wav files as mp3 files cause errors when trying to load on the fly in the dataloader. We compute the log mel spectrogram on the fly with the same parameters as the original paper, we use a function provided by the transformer library from Hugging Face to do this. We normalize using the mean and standard deviation of the dataset, we calculated them by loading the dataset and computing the mean and standard deviation of the spectrograms. We use an 80/10/10 split for train/validation/test respectively. 
+          The datset provides files in .wav format. We used librosa to read the files and extract the features. We used the following features for the log mel spectrogram:
+          <ul>
+            <li> Sampling Rate: 22050 Hz </li>
+            <li> Frame Size: 2048   </li>
+            <li> Hop Lengh: 512 </li>
+            <li> Number of Mel Bins: 128 </li>
         </p>
         <h2 class="mt-5">Data Augmentation</h2>
         <p>
-          Our original dataset was still small and the model did not converge initially, we thus used data augmentation to increase the size of the dataset. Since the clips were 30s long, we split each clip into 3 segments of 10 seconds each. 
+          Our original dataset was still small and the model did not converge initially, we thus used data augmentation to increase the size of the dataset. We increased the size of the GTZAN dataset spliting each clip into 3 segments of 10 seconds each. We used an 80/10/10 split for train/validation/test respectively. 
+ 
         </p>
 
 
@@ -119,16 +145,39 @@
         <h2 class="mt-5">Input/Output Examples</h2>
 
         <p>
-			Place few examples here to illustrate the dataset and your problem statement, add your model images below
+			Our input starts by being a simple audio file as shown below. 
 		</p>
+    <div align = "center">
+     <audio controls align="center">
+      <source src="resources/audio/025378.mp3" type="audio/mpeg" align="center">
+      Your browser does not support the audio element.
+     </audio>
+   </div>
+   <div class="row">
+    <div class="col-lg-12 text-left">
 
+      <p>
+    Then the audio file is converted to a spectrogram. The spectrograms below were generated using different paramenter. 
+  </p>
 		<br/> <!-- Empty Line before the image -->
 	    <div class="img-container" align="center"> <!-- Block parent element -->
-      		<img src="resources/images/examples.jpg" class="img-fluid text-center">
+      		<img src="resources/images/Untitled design.png" class="img-fluid text-center">
     	</div>
     	<br/> <!-- Empty Line after the image -->
+      <p>
+        The spectrogram is then fed to the model, and the output is a probability distribution over the 10 classes.
+        <br/>
+        <br/>
+        <br/>
+
+
+        Output: Electronic
+      </p>
+      <p>
+      </p>
       </div>
     </div>
+
 
 
     <div class="row">
